@@ -61,7 +61,7 @@ var app = builder.Build();
 //==============================================
 
 MigrateData(app);
-// SeedUsersAndRoles(app);
+SeedUsersAndRoles(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
