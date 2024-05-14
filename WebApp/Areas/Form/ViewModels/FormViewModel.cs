@@ -8,9 +8,9 @@ public class FormViewModel
 {
     [MinLength(2)] public string Name { get; set; } = default!;
 
-    public IEnumerable<Sector>? SelectedSectors { get; set; }
+    public MultiSelectList? SelectedSectors { get; set; }
 
     public bool AgreesToTerms { get; set; }
 
-    public SelectList? SectorSelectList { get; set; }
+    public List<string> SectorIds { get; set; } = default!;
 }

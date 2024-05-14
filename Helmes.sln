@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-SolutionItems", "0-Soluti
 		docker-compose.yml = docker-compose.yml
 		helper.md = helper.md
 		README.md = README.md
+		testtoo_DB_dump.sql = testtoo_DB_dump.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-App", "1-App", "{1BA2930E-2809-49EE-8FCA-490568DA5EBF}"

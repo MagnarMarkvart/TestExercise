@@ -16,6 +16,7 @@ public class SectorRepository : BaseEntityRepository<Sector, Sector, AppDbContex
     {
         return (await CreateQuery(userId, noTracking)
                 .Include("SuperSector")
+                .Include("Sectors")
                 .ToListAsync())
             .Select(de => Mapper.MapLeftRight(de)).AsEnumerable()!;
     }
@@ -27,6 +28,7 @@ public class SectorRepository : BaseEntityRepository<Sector, Sector, AppDbContex
         var sectors = (await CreateQuery()
                 .Where(s => sectorIds.Contains(s.Id))
                 .Include("SuperSector")
+                .Include("Sectors")
                 .ToListAsync())
             .Select(s => Mapper.MapLeftRight(s))
             .AsEnumerable();
@@ -39,6 +41,7 @@ public class SectorRepository : BaseEntityRepository<Sector, Sector, AppDbContex
     {
         return Mapper.MapLeftRight(await CreateQuery(userId, noTracking)
             .Include("SuperSector")
+            .Include("Sectors")
             .FirstOrDefaultAsync(m => m.Id.Equals(entityId)))!;
     }
 }

@@ -16,8 +16,8 @@ public class UserInSectorRepository : BaseEntityRepository<UserInSector, UserInS
     public override async Task<IEnumerable<UserInSector>> GetAllAsync(Guid userId = default, bool noTracking = true)
     {
         return (await CreateQuery(userId, noTracking)
-                .Include("AppUser")
                 .Include("Sector")
+                .Include("AppUser")
                 .ToListAsync())
             .Select(de => Mapper.MapLeftRight(de)).AsEnumerable()!;
     }

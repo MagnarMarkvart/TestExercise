@@ -1,4 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using App.Domain.Identity
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+
+@model WebApp.Models.UserDetailsViewModel
+
 @{
     ViewData["Title"] = "Home";
 }
@@ -9,6 +15,44 @@
     <hr />
     <br />
     
-    <a asp-area="Form" asp-controller="Form" asp-action="Index" class="btn btn-outline-dark">My Form</a>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <ul class="list-unstyled">
+            <li>
+                <label>Your Saved Name:</label>
+                <b>@Model.Name</b>
+            </li>
+            <li>
+                <label>Do you accept the terms and conditions:</label>
+                @if (Model.AgreesToTerms)
+                {
+                    <b class="text-success">Yes</b>
+                }
+                else
+                {
+                    <b class="text-danger">No</b>
+                }
+            </li>
+            <li>
+                <label class="mb-2">Your Sectors:</label>
+                @foreach (var userInSector in Model.SelectedSectors)
+                {
+                    <br />
+                    @if (userInSector.SectorWithSuperSectorsName == null)
+                    {
+                        <b>Added From Controller: @userInSector.Sector!.Description</b>
+                        continue;
+                    }
+                    <b>@userInSector.SectorWithSuperSectorsName</b>
+                }
+            </li>
+        </ul>
+        
+        <a asp-area="Form" asp-controller="Form" asp-action="Index" class="btn btn-outline-dark">Edit Form</a>
+    }
+    else
+    {
+        <h3 class="display-4">Please Login.</h3>
+    }
     
 </div>
