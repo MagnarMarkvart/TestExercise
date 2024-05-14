@@ -31,6 +31,7 @@ login, and edit their form data. Also I've crafted a view to read saved form dat
   (Make sure the external port is not in use already)
 * Run the container
 * Should be good to go - migrations are applied from code and are included in this repository
+* Run the application.
 
 ### Seeded Data
 Initial data will be seeded at first runtime.
