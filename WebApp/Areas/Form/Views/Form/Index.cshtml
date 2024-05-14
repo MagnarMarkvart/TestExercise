@@ -13,7 +13,7 @@
         <form asp-action="Save" method="post">
             <div class="form-group">
                 <label class="mt-2 mb-2" asp-for="Name">Name:</label>
-                <input asp-for="Name" class="form-control"/>
+                <input style="width: 750px;" asp-for="Name" class="form-control"/>
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
@@ -21,7 +21,7 @@
                 <label class="mt-2" asp-for="SelectedSectors">Sectors (Hold down 'CTRL' or 'Command' to select multiple sectors):</label>
                 <div class="col-md-9 mt-2 mb-2">
                     @Html.ListBoxFor(m => m.SectorIds, Model.SelectedSectors,
-                        new { @class = "form-control", id = "sectors", size="10" })
+                        new { @class = "form-control", id = "sectors", size="10", style="width: 750px;" })
                 </div>
             </div>
 

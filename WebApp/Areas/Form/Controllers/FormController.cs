@@ -127,14 +127,14 @@ public class FormController : Controller
         return sectorGroups;
     }
 
-    private static MultiSelectList GetSectorMultiSelectList(List<SectorGroup> groupedSectors, string[] selectedValues,
-        List<SelectListItem>? sectorItems = null, string? g = "")
+    private MultiSelectList GetSectorMultiSelectList(List<SectorGroup> groupedSectors, string[] selectedValues,
+        List<SelectListItem>? sectorItems = null)
     {
         sectorItems ??= [];
 
         foreach (var sectorGroup in groupedSectors)
         {
-            var group = new SelectListGroup { Name = g + sectorGroup.Name };
+            var group = new SelectListGroup { Name = $"{GetFullSectorName(_uow.Sectors.FirstOrDefaultAsync(sectorGroup.SectorId).Result)}" };
             
             sectorItems.AddRange(sectorGroup.SelectableSectors
                 .Select(sector => new SelectListItem
@@ -146,7 +146,7 @@ public class FormController : Controller
             
             if (sectorGroup.Subgroups.Count > 0)
             {
-                GetSectorMultiSelectList(sectorGroup.Subgroups, selectedValues, sectorItems, $"({group.Name}) ");
+                GetSectorMultiSelectList(sectorGroup.Subgroups, selectedValues, sectorItems);
             }
         }
 
